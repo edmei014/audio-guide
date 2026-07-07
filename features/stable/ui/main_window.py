@@ -3,7 +3,6 @@ from __future__ import annotations
 import sys
 from typing import Any
 
-import psutil
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import (
     QApplication,
@@ -23,6 +22,11 @@ from audio.device_utils import (
     find_default_speakers,
     find_virtual_microphone_output,
     is_vb_cable_installed,
+)
+from audio.windows_device_restore import (
+    capture_startup_defaults,
+    capture_startup_recording_default,
+    install_exit_restore,
 )
 from effects.noise_reduction import NoiseReductionEffect
 from features import __version__
@@ -154,14 +158,12 @@ class MainWindow(QMainWindow):
         self.playback_status = IconTextLabel("fa6s.headphones", "Listening: Inactive")
         self.microphone_status = IconTextLabel("fa6s.microphone", "Sending: Inactive")
         self.latency_status = IconTextLabel("fa6s.gauge-high", "Latency: —")
-        self.cpu_status = IconTextLabel("fa6s.microchip", "CPU Usage: —")
 
         status.addWidget(self.playback_status)
         status.addWidget(self._status_separator())
         status.addWidget(self.microphone_status)
         status.addWidget(self._status_separator())
         status.addWidget(self.latency_status)
-        status.addPermanentWidget(self.cpu_status)
 
     def _status_separator(self) -> QFrame:
         separator = QFrame()
@@ -406,7 +408,6 @@ class MainWindow(QMainWindow):
 
     def _update_status(self) -> None:
         self._activity.record_status_update()
-        self.cpu_status.setText(f"CPU Usage: {psutil.cpu_percent(interval=None):.0f}%")
 
         pb = self._platform.playback_metrics()
         mic = self._platform.microphone_metrics()
@@ -446,6 +447,9 @@ def run() -> None:
     app.setStyle("Fusion")
     app.setStyleSheet(APP_STYLESHEET)
     apply_focus_stable_palette(app)
+    capture_startup_defaults()
+    capture_startup_recording_default()
+    install_exit_restore(app)
     try:
         NoiseReductionEffect.ensure_available()
     except ImportError as exc:

@@ -1,82 +1,97 @@
 # Audio Guide
 
-**Echtzeit-Rauschunterdrückung für Windows** — bereinigt PC-Ton (Playback) und Mikrofon parallel mit [DeepFilterNet](https://github.com/Rikorose/DeepFilterNet).
+> Real-time AI Noise Reduction for Windows Playback and Microphone
 
-Version **1.0** ist eine schlanke Desktop-App mit einer einzigen Hauptansicht. Die modulare Audio-Architektur (Effect Chain, VST3-Host, getrennte Pipelines) bleibt im Code erhalten und ist für Version 2 unter `features/experimental/` vorbereitet.
+Audio Guide is a Windows desktop application that removes background noise from both your system audio and microphone in real time using **DeepFilterNet**.
 
-## Was Audio Guide macht
+Unlike many audio tools, Audio Guide automatically configures the required Windows audio routing for playback. The user only selects the desired playback device and microphone — the application handles the VB-Audio Virtual Cable routing automatically.
 
-- **Playback:** Rauschen aus dem Systemton entfernen (z. B. über VB-Cable)
-- **Mikrofon:** Rauschen aus dem Mikrofon entfernen und auf ein virtuelles Ausgabegerät legen
-- Beide Routen laufen **gleichzeitig** und unabhängig
+---
 
-## Voraussetzungen
+# Screenshot
 
-- Windows 10/11
-- Python **3.10–3.12** (DeepFilterNet)
-- [VB-Audio Virtual Cable](https://vb-audio.com/Cable/) (empfohlen für Playback-Routing)
+![Application](sources/application.png)
 
-## Installation
+---
+
+# How Audio Guide Works
+
+![Description](sources/description.png)
+
+### Playback (What You Hear)
+
+When Playback Noise Reduction is enabled, Audio Guide automatically switches the Windows default playback device to **VB-Audio Virtual Cable**.
+
+The processed audio is then sent directly to the output device selected inside Audio Guide.
+
+The original Windows playback device is restored automatically when playback is disabled or when the application exits.
+
+---
+
+### Microphone (What You Send)
+
+Audio Guide captures the selected microphone, removes background noise in real time and forwards the cleaned signal to **CABLE Output (VB-Audio Virtual Cable)**.
+
+To use the processed microphone, simply select
+
+**CABLE Output (VB-Audio Virtual Cable)**
+
+as the microphone inside applications such as Discord, Microsoft Teams or Zoom.
+
+The original Windows recording device is restored automatically when Audio Guide closes.
+
+---
+
+# Features
+
+- Real-time AI noise reduction using DeepFilterNet
+- Playback noise reduction
+- Microphone noise reduction
+- Automatic Windows playback routing
+- Automatic restoration of Windows audio devices on exit
+- Adjustable noise reduction strength
+- Low-latency real-time processing
+
+---
+
+# Requirements
+
+- Windows 10 / Windows 11
+- Python 3.10 – 3.12
+- VB-Audio Virtual Cable
+
+---
+
+# Installation
 
 ```powershell
 git clone <repository-url>
 cd "Audio Guide"
-py -3.12 -m pip install -r requirements.txt
+
+py -3.12 -m venv .venv
+.\.venv\Scripts\activate
+
+pip install -r requirements.txt
 ```
 
-## Start
+Run:
 
 ```powershell
-py -3.12 main.py
+python main.py
 ```
 
-## Bedienung
+---
 
-1. **Playback:** Eingang (z. B. „CABLE Output“) und Ausgang (Lautsprecher) wählen, Noise Reduction aktivieren, **Start**
-2. **Mikrofon:** Mikrofon und virtuelles Ausgabegerät (z. B. „CABLE Input“) wählen, **Start**
-3. Statusleiste zeigt Laufstatus, Latenz und CPU
+# Technology
 
-Windows-Ausgabe auf **CABLE Input** routen, damit der Playback-Pfad den Systemton erhält.
+Audio Guide uses **DeepFilterNet**, an open-source deep learning model designed for real-time speech enhancement and background noise suppression with very low latency.
 
-## Projektstruktur
+Audio processing is performed locally on the user's computer.
 
-```
-features/
-  stable/                 # Version 1.0 (UI + NR-only-Konfiguration)
-    config.py
-    ui/main_window.py
-    ui/route_panel.py
-  experimental/           # Version 2+ (EQ, VST3, Plugin-UI)
-    ui/tabbed_main_window.py
-    ui/effect_chain_rack.py
-    ...
+No audio leaves the device.
 
-audio/                    # Geräte, Capture, Output, Resampling, device_utils
-effects/                  # Noise Reduction, EQ*, VST3-Host*
-pipeline/                 # Effect Chain, Pipelines, Session
-sources/                  # Playback- und Mikrofonquellen
+---
 
-* in v1.0 im UI ausgeblendet, Infrastruktur bleibt erhalten
-```
+# License
 
-## Test
-
-```powershell
-$env:PYTHONPATH = "$PWD"
-py -3.12 scripts\test_pipeline.py
-```
-
-## Version 2 (experimentell)
-
-Tab-UI mit EQ, VST3 und Plugin-Verwaltung:
-
-```powershell
-py -3.12 -m pip install -r requirements-experimental.txt
-py -3.12 -c "from features.experimental.ui.tabbed_main_window import run; run()"
-```
-
-Siehe `features/experimental/README.md`.
-
-## Lizenz
-
-Siehe Repository-Lizenz.
+MIT License

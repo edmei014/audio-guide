@@ -180,23 +180,27 @@ QSlider:inactive::add-page:horizontal {
     border-radius: 2px;
 }
 
+QSlider#strengthSlider {
+    min-height: 32px;
+}
+
 QSlider#strengthSlider::handle:horizontal,
 QSlider#strengthSlider:inactive::handle:horizontal {
     image: none;
-    width: 18px;
-    height: 18px;
-    min-width: 18px;
-    min-height: 18px;
-    margin: -7px 0;
-    background: #f2f2f2;
-    border: 1.5px solid #c0c0c0;
-    border-radius: 9px;
+    width: 22px;
+    height: 22px;
+    min-width: 22px;
+    min-height: 22px;
+    margin: -9px 0;
+    background: #fafafa;
+    border: 2px solid #d0d0d0;
+    border-radius: 11px;
 }
 
 QSlider#strengthSlider::handle:horizontal:hover,
 QSlider#strengthSlider:inactive::handle:horizontal:hover {
     background: #ffffff;
-    border: 1.5px solid #d8d8d8;
+    border: 2px solid #e8e8e8;
 }
 
 QPushButton {
