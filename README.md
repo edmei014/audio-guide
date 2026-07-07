@@ -64,17 +64,27 @@ The original Windows recording device is restored automatically when Audio Guide
 
 # Installation
 
-```powershell
-git clone <repository-url>
-cd "Audio Guide"
+Clone the repository:
 
+```powershell
+git clone https://github.com/edmei014/audio-guide.git
+cd audio-guide
+```
+
+Create a virtual environment:
+
+```powershell
 py -3.12 -m venv .venv
 .\.venv\Scripts\activate
+```
 
+Install the dependencies:
+
+```powershell
 pip install -r requirements.txt
 ```
 
-Run:
+Run the application:
 
 ```powershell
 python main.py
