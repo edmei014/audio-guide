@@ -21,7 +21,7 @@ VB_CABLE_URL = "https://vb-audio.com/Cable/"
 class VbCableSetupDialog(QDialog):
     def __init__(self, parent=None) -> None:
         super().__init__(parent)
-        self.setWindowTitle("Audio Guide Setup")
+        self.setWindowTitle("Clear Audio Setup")
         apply_window_icon(self)
         self.setModal(True)
         self.resize(480, 260)
@@ -35,7 +35,7 @@ class VbCableSetupDialog(QDialog):
         layout.addWidget(title)
 
         body = QLabel(
-            "Audio Guide uses VB-Audio Virtual Cable to clean up what you hear and "
+            "Clear Audio uses VB-Audio Virtual Cable to clean up what you hear and "
             "what you send before audio reaches your apps.\n\n"
             "VB-Cable was not detected on this system."
         )
@@ -64,8 +64,8 @@ class VbCableSetupDialog(QDialog):
             "VB-Cable Installation Guide",
             "1. Click Download VB-Cable to open the official VB-Audio website.\n"
             "2. Download and run the VB-Cable installer.\n"
-            "3. Complete installation, then return to Audio Guide.\n"
-            "4. Audio Guide will detect VB-Cable automatically within a few seconds.\n\n"
+            "3. Complete installation, then return to Clear Audio.\n"
+            "4. Clear Audio will detect VB-Cable automatically within a few seconds.\n\n"
             "After installation, enable Noise Reduction in What You Hear "
-            "to route PC audio through Audio Guide.",
+            "to route PC audio through Clear Audio.",
         )

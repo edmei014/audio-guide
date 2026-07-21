@@ -52,7 +52,7 @@ DEVICE_POLL_INTERVAL_MS = 5000
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle(f"Audio Guide {__version__}")
+        self.setWindowTitle(f"Clear Audio {__version__}")
         apply_window_icon(self)
         self.resize(720, 480)
         self.setMinimumSize(560, 420)
@@ -455,7 +455,7 @@ def run() -> None:
     except ImportError as exc:
         QMessageBox.warning(
             None,
-            "Audio Guide",
+            "Clear Audio",
             f"Noise Reduction is not available on this system.\n\n{exc}\n\n"
             "Please use Python 3.10–3.12.",
         )

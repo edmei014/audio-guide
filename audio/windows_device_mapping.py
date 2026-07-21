@@ -1,4 +1,4 @@
-"""Map Audio Guide device names to Windows MMDevice friendly names."""
+"""Map Clear Audio device names to Windows MMDevice friendly names."""
 
 from __future__ import annotations
 

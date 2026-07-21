@@ -1,4 +1,4 @@
-"""Audio Guide 1.0 – Echtzeit-Rauschunterdrückung für Windows."""
+"""Clear Audio 1.0 – Echtzeit-Rauschunterdrückung für Windows."""
 
 from features.stable.ui.main_window import run
 

@@ -1,4 +1,4 @@
-"""End-to-end test for Audio Guide v1 (noise reduction playback)."""
+"""End-to-end test for Clear Audio v1 (noise reduction playback)."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ from audio.device_utils import (
 
 
 def main() -> int:
-    print("=== Audio Guide v1.0 Test ===\n")
+    print("=== Clear Audio v1.0 Test ===\n")
 
     platform = AudioPlatform()
     from audio.devices import list_usable_devices

@@ -1,4 +1,4 @@
-"""Font Awesome icons via QtAwesome for Audio Guide v1.0."""
+"""Font Awesome icons via QtAwesome for Clear Audio v1.0."""
 
 from __future__ import annotations
 

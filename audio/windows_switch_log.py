@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 
 from audio.windows_types import WindowsAudioDevice
 
-_LOG_PATH = os.path.join(tempfile.gettempdir(), "AudioGuide-WindowsAudio.log")
+_LOG_PATH = os.path.join(tempfile.gettempdir(), "ClearAudio-WindowsAudio.log")
 
 
 @dataclass(frozen=True)

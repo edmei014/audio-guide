@@ -37,12 +37,12 @@ def _is_vb_cable_render_name(name: str) -> bool:
 
 
 def is_vb_cable_output_input(entry: DeviceEntry) -> bool:
-    """VB-Cable capture endpoint (CABLE Output) used as an input in Audio Guide."""
+    """VB-Cable capture endpoint (CABLE Output) used as an input in Clear Audio."""
     return entry.kind == "input" and "cable output" in entry.name.lower()
 
 
 def is_vb_cable_input_output(entry: DeviceEntry) -> bool:
-    """VB-Cable render endpoint (CABLE Input) used as an output in Audio Guide."""
+    """VB-Cable render endpoint (CABLE Input) used as an output in Clear Audio."""
     return entry.kind == "output" and _is_vb_cable_render_name(entry.name)
 
 

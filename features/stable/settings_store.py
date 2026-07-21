@@ -1,4 +1,4 @@
-"""Persistent user configuration for Audio Guide v1.0."""
+"""Persistent user configuration for Clear Audio v1.0."""
 
 from __future__ import annotations
 
@@ -57,7 +57,7 @@ def settings_path() -> Path:
         base = Path(os.environ.get("APPDATA", Path.home()))
     else:
         base = Path.home() / ".config"
-    return base / "Audio Guide" / "settings.json"
+    return base / "Clear Audio" / "settings.json"
 
 
 def load_settings() -> AppSettings:

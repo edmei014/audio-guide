@@ -1,4 +1,4 @@
-"""Dark application theme for Audio Guide v1.0."""
+"""Dark application theme for Clear Audio v1.0."""
 
 APP_STYLESHEET = """
 QWidget {

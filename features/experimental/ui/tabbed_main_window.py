@@ -31,7 +31,7 @@ from pipeline.session import AudioPlatform
 class TabbedMainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Audio Guide – Experimental (v2)")
+        self.setWindowTitle("Clear Audio – Experimental (v2)")
         self.resize(780, 680)
 
         self._platform = AudioPlatform()
